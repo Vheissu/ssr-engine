@@ -26,7 +26,7 @@ function render(options: RenderOptions, initOptions: AppInitializationOptions) {
   delete require.cache[require.resolve('aurelia-pal')];
   delete require.cache[require.resolve('aurelia-pal-nodejs')];
 
-  return start(initOptions, options.url.toString())
+  return start(initOptions, options.url.toString(), options.headers)
   .then((ctx: { aurelia: Aurelia, pal: AureliaPal, palNodeJS: AureliaPalNodeJS, stop: () => void }) => {
     const document = ctx.pal.DOM.global.document;
 
@@ -54,7 +54,7 @@ function setInputDefaultValues(body: HTMLBodyElement) {
   }
 }
 
-function start(options: AppInitializationOptions, requestUrl: string) {
+function start(options: AppInitializationOptions, requestUrl: string, headers?: any) {
   const {initialize, start} = options.main();
 
   const {PLATFORM} = initialize();
@@ -63,7 +63,7 @@ function start(options: AppInitializationOptions, requestUrl: string) {
   // this dictates what page aurelia loads on startup
   PLATFORM.jsdom.reconfigure({ url: requestUrl });
 
-  return start();
+  return typeof headers !== 'undefined' ? start(headers) : start();
 }
 
 export {

@@ -1,2 +1,9 @@
 import { RenderOptions, TransformerContext } from '../interfaces';
-export default function (html: string, transformerCtx: TransformerContext, options: RenderOptions): string;
+/**
+ * Inserts the rendered app immediately after the opening body tag
+ * @param {string} html
+ * @param {TransformerContext} transformerCtx
+ * @param {RenderOptions} options
+ * @returns {string}
+ */
+export default function (html: string, transformerCtx: TransformerContext, options?: RenderOptions): string;

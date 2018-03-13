@@ -2,6 +2,12 @@ System.register([], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     // tslint:enable:no-var-requires
+    /**
+     * Render HTML by passing transformer context and rendering options to registered transformers
+     * @param {TransformerContext} transformerCtx
+     * @param {RenderOptions} options
+     * @returns {string}
+     */
     function transform(transformerCtx, options) {
         var html = options.template;
         for (var i = 0; i < transformers.length; i++) {
@@ -19,6 +25,7 @@ System.register([], function (exports_1, context_1) {
                 require('./template').default,
                 require('./title').default,
                 require('./styles').default,
+                require('./ssr-attributes').default,
                 require('./preboot').default
             ];
         }

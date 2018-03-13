@@ -1,7 +1,3 @@
-export function appendToBody(htmlString: string, toAppend: string) {
-  return htmlString.replace('</body>', `${toAppend}</body>`);
-}
-
-export function appendToHead(htmlString: string, toAppend: string) {
-  return htmlString.replace('</head>', `${toAppend}</head>`);
+export function replaceString(str: string, search: any, replace: string) {
+  return str.replace(search, replace);
 }

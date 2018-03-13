@@ -13,7 +13,7 @@ export interface RenderOptions {
   url?: URL;
 
   /**
-   * The template where <!-- app --> indicates where server side rendered html will be inserted
+   * The template where server side rendered html will be inserted
    */
   template: string;
 
@@ -38,6 +38,11 @@ export interface RenderOptions {
    * e.g. ['body']
    */
   appRoots?: string[];
+
+  /**
+   * Client request headers.
+   */
+  headers?: any;
 }
 
 export interface AppInitializationOptions {
@@ -47,7 +52,8 @@ export interface AppInitializationOptions {
    */
   main: () => {
     initialize: () => { PLATFORM: any },
-    start: () => Promise<{ aurelia: Aurelia, pal: AureliaPal, palNodeJS: AureliaPalNodeJS, stop: () => void }>,
+    start: (headers?: any) => Promise<{ aurelia: Aurelia, pal: AureliaPal,
+      palNodeJS: AureliaPalNodeJS, stop: () => void }>,
     stop: () => Promise<void>
   };
 

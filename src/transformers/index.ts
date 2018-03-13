@@ -5,10 +5,17 @@ const transformers = [
   require('./template').default,
   require('./title').default,
   require('./styles').default,
+  require('./ssr-attributes').default,
   require('./preboot').default
 ];
 // tslint:enable:no-var-requires
 
+/**
+ * Render HTML by passing transformer context and rendering options to registered transformers
+ * @param {TransformerContext} transformerCtx
+ * @param {RenderOptions} options
+ * @returns {string}
+ */
 export function transform(transformerCtx: TransformerContext, options: RenderOptions) {
   let html = options.template;
 

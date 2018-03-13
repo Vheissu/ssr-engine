@@ -19,7 +19,7 @@ System.register(["./reflect", "./property-descriptor", "./transformers", "./clea
         // because aurelia-pal holds the reference to the DOM
         delete require.cache[require.resolve('aurelia-pal')];
         delete require.cache[require.resolve('aurelia-pal-nodejs')];
-        return start(initOptions, options.url.toString())
+        return start(initOptions, options.url.toString(), options.headers)
             .then(function (ctx) {
             var document = ctx.pal.DOM.global.document;
             setInputDefaultValues(document.body);
@@ -42,13 +42,13 @@ System.register(["./reflect", "./property-descriptor", "./transformers", "./clea
             }
         }
     }
-    function start(options, requestUrl) {
+    function start(options, requestUrl, headers) {
         var _a = options.main(), initialize = _a.initialize, start = _a.start;
         var PLATFORM = initialize().PLATFORM;
         // url of jsdom should be equal to the request url
         // this dictates what page aurelia loads on startup
         PLATFORM.jsdom.reconfigure({ url: requestUrl });
-        return start();
+        return typeof headers !== 'undefined' ? start(headers) : start();
     }
     var transformers_1, cleanup_1;
     return {

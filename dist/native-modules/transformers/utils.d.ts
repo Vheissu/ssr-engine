@@ -1,2 +1,1 @@
-export declare function appendToBody(htmlString: string, toAppend: string): string;
-export declare function appendToHead(htmlString: string, toAppend: string): string;
+export declare function replaceString(str: string, search: any, replace: string): string;

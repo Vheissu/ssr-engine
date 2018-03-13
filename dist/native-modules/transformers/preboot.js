@@ -1,5 +1,13 @@
 import * as preboot from 'preboot';
-import { appendToHead, appendToBody } from './utils';
+import { replaceString } from './utils';
+/**
+ * Append Angular preboot to the rendered HTML
+ * @see https://github.com/angular/preboot
+ * @param {string} html
+ * @param {TransformerContext} transformerCtx
+ * @param {RenderOptions} options
+ * @returns {string}
+ */
 export default function (html, transformerCtx, options) {
     if (options.preboot) {
         if (options.replayDelay === undefined) {
@@ -24,9 +32,9 @@ export default function (html, transformerCtx, options) {
             ]
         }, options.prebootOptions);
         var inlinePrebootCode = preboot.getInlineCode(prebootOptions);
-        html = appendToHead(html, "\r\n<script>" + inlinePrebootCode + "</script>\r\n");
+        html = replaceString(html, '</head>', "\r\n<script>" + inlinePrebootCode + "</script>\r\n</head>");
         // preboot_browser can replay events that were stored by the preboot code
-        html = appendToBody(html, "\r\n<script src=\"preboot_browser.js\"></script>\n      <script>\n      document.addEventListener('aurelia-started', function () {\n        // Aurelia has started client-side\n        // but the view/view-model hasn't been loaded yet so we need a small\n        // delay until we can playback all events.\n        setTimeout(function () { preboot.complete(); }, " + options.replayDelay + ");\n      });\n      </script>");
+        html = replaceString(html, '</body>', "\r\n<script src=\"preboot_browser.js\"></script>\n      <script>\n      document.addEventListener('aurelia-started', function () {\n        setTimeout(function () { preboot.complete(); }, " + options.replayDelay + ");\n      });\n      </script>\r\n</body>");
     }
     return html;
 }

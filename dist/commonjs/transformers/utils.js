@@ -1,10 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function appendToBody(htmlString, toAppend) {
-    return htmlString.replace('</body>', toAppend + "</body>");
+function replaceString(str, search, replace) {
+    return str.replace(search, replace);
 }
-exports.appendToBody = appendToBody;
-function appendToHead(htmlString, toAppend) {
-    return htmlString.replace('</head>', toAppend + "</head>");
-}
-exports.appendToHead = appendToHead;
+exports.replaceString = replaceString;
