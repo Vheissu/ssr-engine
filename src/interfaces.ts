@@ -65,9 +65,9 @@ export interface AppInitializationOptions {
 
 export interface TransformerContext {
   /**
-   * The body of the server side rendered app
+   * The aurelia instance
    */
-  app: string;
+  aurelia: any;
 
   /**
    * The JSDOM document

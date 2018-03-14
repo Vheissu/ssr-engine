@@ -23,7 +23,7 @@ System.register(["./reflect", "./property-descriptor", "./transformers", "./clea
             .then(function (ctx) {
             var document = ctx.pal.DOM.global.document;
             setInputDefaultValues(document.body);
-            var html = transformers_1.transform({ app: ctx.aurelia.host.outerHTML, document: document }, options);
+            var html = transformers_1.transform({ aurelia: ctx.aurelia, document: document }, options);
             ctx.stop();
             cleanup_1.cleanup(options);
             return html;
