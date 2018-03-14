@@ -1,5 +1,6 @@
 import { IDom } from 'aurelia-pal-nodejs/dist/dom';
 import { Aurelia } from 'aurelia-framework';
+import { PrebootOptions } from 'preboot';
 export interface RenderOptions {
     /**
      * The path to the bundle
@@ -25,7 +26,7 @@ export interface RenderOptions {
     /**
      * Options that are passed to preboot
      */
-    prebootOptions?: any;
+    prebootOptions?: PrebootOptions;
     /**
      * The queryselector(s) of the approot(s). Used by preboot
      * e.g. ['body']
