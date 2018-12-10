@@ -1,5 +1,6 @@
 System.register(["./utils"], function (exports_1, context_1) {
     "use strict";
+    var utils_1;
     var __moduleName = context_1 && context_1.id;
     /**
      * Copy style tags created by the aurelia instance from the DOM to the rendered HTML
@@ -16,7 +17,6 @@ System.register(["./utils"], function (exports_1, context_1) {
         return html;
     }
     exports_1("default", default_1);
-    var utils_1;
     return {
         setters: [
             function (utils_1_1) {

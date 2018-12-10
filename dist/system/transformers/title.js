@@ -1,5 +1,6 @@
 System.register(["./utils"], function (exports_1, context_1) {
     "use strict";
+    var utils_1;
     var __moduleName = context_1 && context_1.id;
     /**
      * Copy style content of the title from the aurelia instance DOM to the rendered HTML
@@ -10,10 +11,12 @@ System.register(["./utils"], function (exports_1, context_1) {
      */
     function default_1(html, transformerCtx, options) {
         var title = transformerCtx.document.head.querySelector('title');
-        return utils_1.replaceString(html, /<title>((.|[\n\r])*)<\/title>/im, title.outerHTML);
+        if (title) {
+            return utils_1.replaceString(html, /<title>((.|[\n\r])*)<\/title>/im, title.outerHTML);
+        }
+        return html;
     }
     exports_1("default", default_1);
-    var utils_1;
     return {
         setters: [
             function (utils_1_1) {

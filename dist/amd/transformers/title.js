@@ -10,7 +10,10 @@ define(["require", "exports", "./utils"], function (require, exports, utils_1) {
      */
     function default_1(html, transformerCtx, options) {
         var title = transformerCtx.document.head.querySelector('title');
-        return utils_1.replaceString(html, /<title>((.|[\n\r])*)<\/title>/im, title.outerHTML);
+        if (title) {
+            return utils_1.replaceString(html, /<title>((.|[\n\r])*)<\/title>/im, title.outerHTML);
+        }
+        return html;
     }
     exports.default = default_1;
     ;

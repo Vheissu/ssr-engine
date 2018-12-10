@@ -8,6 +8,9 @@ import { replaceString } from './utils';
  */
 export default function (html, transformerCtx, options) {
     const title = transformerCtx.document.head.querySelector('title');
-    return replaceString(html, /<title>((.|[\n\r])*)<\/title>/im, title.outerHTML);
+    if (title) {
+        return replaceString(html, /<title>((.|[\n\r])*)<\/title>/im, title.outerHTML);
+    }
+    return html;
 }
 ;

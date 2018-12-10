@@ -1,5 +1,6 @@
 System.register(["./utils"], function (exports_1, context_1) {
     "use strict";
+    var utils_1;
     var __moduleName = context_1 && context_1.id;
     /**
      * Look up au-ssr-id attributes in the rendered DOM and copy them to the HTML
@@ -16,7 +17,6 @@ System.register(["./utils"], function (exports_1, context_1) {
         return html;
     }
     exports_1("default", default_1);
-    var utils_1;
     return {
         setters: [
             function (utils_1_1) {
