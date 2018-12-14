@@ -32,7 +32,7 @@ exports.cleanup = cleanup;
  * @param key
  */
 function rdelete(m, key) {
-    if (!m.id.includes('aws-sdk')) {
+    if (!m.id.includes('aws-sdk') && !m.id.includes('firebase-admin') && !m.id.includes('firebase-functions')) {
         if (m.parent && m.parent.filename === require.resolve(key)) {
             delete m.parent;
         }
