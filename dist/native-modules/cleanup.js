@@ -29,15 +29,17 @@ export function cleanup(options) {
  * @param key
  */
 function rdelete(m, key) {
-    if (m.parent && m.parent.filename === require.resolve(key)) {
-        delete m.parent;
-    }
-    for (var i = m.children.length - 1; i >= 0; i--) {
-        if (m.children[i].filename === require.resolve(key)) {
-            m.children.splice(i, 1);
+    if (!m.id.includes('aws-sdk')) {
+        if (m.parent && m.parent.filename === require.resolve(key)) {
+            delete m.parent;
         }
-        else {
-            rdelete(m.children[i], key);
+        for (var i = m.children.length - 1; i >= 0; i--) {
+            if (m.children[i].filename === require.resolve(key)) {
+                m.children.splice(i, 1);
+            }
+            else {
+                rdelete(m.children[i], key);
+            }
         }
     }
 }

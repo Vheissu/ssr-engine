@@ -34,15 +34,17 @@ export function cleanup(options: RenderOptions) {
  * @param key
  */
 function rdelete(m: NodeModule, key: string) {
-  if (m.parent && m.parent.filename === require.resolve(key)) {
-    delete m.parent;
-  }
+  if (!m.id.includes('aws-sdk')) {
+    if (m.parent && m.parent.filename === require.resolve(key)) {
+      delete m.parent;
+    }
 
-  for (let i = m.children.length - 1; i >= 0; i--) {
-    if (m.children[i].filename === require.resolve(key)) {
-      m.children.splice(i, 1);
-    } else {
-      rdelete(m.children[i], key);
+    for (let i = m.children.length - 1; i >= 0; i--) {
+      if (m.children[i].filename === require.resolve(key)) {
+        m.children.splice(i, 1);
+      } else {
+        rdelete(m.children[i], key);
+      }
     }
   }
 };
